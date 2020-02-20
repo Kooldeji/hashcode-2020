@@ -1,5 +1,5 @@
 import main
-import timi
+import nonso
 
 books = []
 noScanDays = 0
