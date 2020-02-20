@@ -2,6 +2,7 @@ import main, timi
 
 books = []
 noScanDays = 0
+scanned = {}
 
 
 def main(fileName, idx):
