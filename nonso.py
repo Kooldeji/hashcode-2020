@@ -1,8 +1,3 @@
-books = []
-libs = []
-scanned = set()
-
-
 class Library:
     def __init__(self, id, libBooks, signupTime, booksPerDay):
         self.id = id
@@ -26,3 +21,11 @@ class Library:
             j += 1
         self.books = self.books[:i+1]
         return score
+
+    def select(self, step):
+        global scanned
+        daysToScan = (noScanDays - step) - self.signupTime
+        for i in range(min(daysToScan * self.booksPerDay, len(self.books))):
+            scanned.add(self.books[i])
+
+        return step + self.signupTime

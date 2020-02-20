@@ -1,7 +1,3 @@
-# books
-# noScanDays
-
-
 def selectLibraries(libs):
     selectedLibraries = []
     currentStep = 0
