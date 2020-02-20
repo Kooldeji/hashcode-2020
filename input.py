@@ -1,4 +1,5 @@
-import main, timi
+import main
+import timi
 
 books = []
 noScanDays = 0
