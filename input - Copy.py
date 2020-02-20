@@ -11,20 +11,23 @@ class Library:
         self.booksPerDay = booksPerDay
 
     def score(self, step, days):
-        score = 0
-        remDays = days - step
-        if self.signupTime >= remDays: return -1
-        remDays -= self.signupTime
-        scannable = remDays * self.booksPerDay
+        if days - (step + self.signupTime) <= 0: return -1
 
-        i = j = 0
-        while i <= scannable and j != len(self.books):
-            if self.books[j] not in scanned:
-                score += books[self.books[j]]
-                self.books[i], self.books[j] = self.books[j], self.books[i]
-                i += 1
-            j += 1
-        return score
+        return self.booksPerDay * (2 * (days - (step + self.signupTime)))
+        # score = 0
+        # remDays = days - step
+        # if self.signupTime >= remDays: return -1
+        # remDays -= self.signupTime
+        # scannable = remDays * self.booksPerDay
+        #
+        # i = j = 0
+        # while i <= scannable and j != len(self.books):
+        #     if self.books[j] not in scanned:
+        #         score += books[self.books[j]]
+        #         self.books[i], self.books[j] = self.books[j], self.books[i]
+        #         i += 1
+        #     j += 1
+        # return score
 
     def select(self, step):
         global scanned
@@ -71,9 +74,8 @@ def main(fileName, idx):
         lib = Library(libId, libBooks, signupTime, booksPerDay)
         libs.add(lib)
     print('Started ' + fileName)
-    # outputLibs = selectLibraries(libs)
-    outputLibs = sorted(libs, key=lambda x: -x.booksPerDay)
-    outputLibs = sorted(outputLibs, key=lambda x: x.signupTime)
+    outputLibs = selectLibraries(libs)
+    # outputLibs = sorted(libs, key=lambda x: x.booksPerDay)
     submit(outputLibs, fileName, idx)
 
 
@@ -88,13 +90,14 @@ def submit(outputLibs, fileName, idx):
         print(lib.books[-1], file=file)
 
 
-itr = 5
+itr = 4
 # files = ['a_example']
 # files = ['b_read_on']
 # files = ['c_incunabula']
-# files = ['d_tough_choices']
+files = ['d_tough_choices']
 # files = ['e_so_many_books']
 # files = ['f_libraries_of_the_world']
-files = ['a_example', 'b_read_on', 'c_incunabula', 'e_so_many_books', 'f_libraries_of_the_world']
+# files = ['a_example', 'b_read_on', 'c_incunabula', 'd_tough_choices', 'e_so_many_books', 'f_libraries_of_the_world']
+#files = ['a_example', 'b_read_on', 'c_incunabula', 'e_so_many_books', 'f_libraries_of_the_world']
 for file in files:
     main(file, 'out_' + str(itr))
