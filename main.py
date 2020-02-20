@@ -18,9 +18,3 @@ def selectLibraries(libs):
         else:
             break
     return selectedLibraries
-
-
-itr = 1
-files = ['a_example', 'b_read_on', 'c_incunabula', 'd_tough_choices', 'e_so_many_books', 'f_libraries_of_the_world']
-for file in files:
-    main(file, 'out_' + str(itr))
