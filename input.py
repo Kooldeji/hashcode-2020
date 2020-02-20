@@ -1,4 +1,5 @@
-# import
+import main, timi
+
 books = []
 noScanDays = 0
 
@@ -15,7 +16,7 @@ def main(fileName, idx):
         libBooks.sort(key=lambda b: books[b], reverse=True)
         lib = Library(libId, libBooks, signupTime, booksPerDay)
         libs.add(lib)
-    outputLibs = selectLibs(libs)
+    outputLibs = selectLibraries(libs)
     submit(outputLibs, fileName, idx)
 
 

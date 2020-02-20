@@ -10,7 +10,7 @@ class Library:
         self.signupTime = signupTime
         self.booksPerDay = booksPerDay
 
-    def selectLibrary(self, step):
+    def select(self, step):
         daysToScan = (noScannedDays - step) - self.signupTime
         for i in range(min(daysToScan * self.booksPerDay, len(self.books))):
             scanned.add(self.books[i])
