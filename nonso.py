@@ -24,4 +24,5 @@ class Library:
                 self.books[i], self.books[j] = self.books[j], self.books[i]
                 i += 1
             j += 1
-            return score
+        self.books = self.books[:i+1]
+        return score
