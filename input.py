@@ -1,25 +1,38 @@
-class Library:
-    def __init__(self, libBooks, signupTime, booksPerDay):
-        self.books = libBooks
-        self.signupTime = signupTime
-        self.booksPerDay = booksPerDay
-
-
+# import
 books = []
-libs = []
+noScanDays = 0
 
 
-def main(fileName):
+def main(fileName, idx):
     global books, noScanDays
-    file = open(fileName)
+    file = open(fileName+".txt")
     noBooks, noLibs, noScanDays = map(int, file.readline().split(" "))
     books = list(map(int, file.readline().split(" ")))
-    for _ in noLibs:
+    libs = set()
+    for libId in range(len(noLibs)):
         noBooks, signupTime, booksPerDay = map(int, file.readline().split(" "))
         libBooks = list(map(int, file.readline().split(" ")))
         libBooks.sort(key=lambda b: books[b], reverse=True)
-        lib = Library(libBooks, signupTime, booksPerDay)
-        libs.append(lib)
-    ouput = selectLibs(libs)
+        lib = Library(libId, libBooks, signupTime, booksPerDay)
+        libs.add(lib)
+    outputLibs = selectLibs(libs)
+    submit(outputLibs, fileName, idx)
 
-print(1)
+
+def submit(outputLibs, fileName, idx):
+    file = open(idx+"_"+fileName+".txt", "w")
+    for lib in outputLibs:
+        print(lib.id, file=file)
+        for b in range(len(lib.books)-1):
+            book = lib.books[b]
+            print(book, file=file, sep=" ")
+        print(lib.books[-1], file=file)
+
+
+
+
+
+
+
+
+
