@@ -19,6 +19,7 @@ class Library:
                 self.books[i], self.books[j] = self.books[j], self.books[i]
                 i += 1
             j += 1
+        self.books = self.books[:i+1]
         return score
 
     def select(self, step):
